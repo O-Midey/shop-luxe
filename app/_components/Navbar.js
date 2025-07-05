@@ -2,10 +2,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
-import SearchButton from "./SearchButton";
-import UserIcon from "./UserIcon";
-import Wishlist from "./Wishlist";
-import CartIcon from "./CartIcon";
+import SearchButton from "./icons/SearchButton";
+import UserIcon from "./icons/UserIcon";
+import Wishlist from "./icons/Wishlist";
+import CartIcon from "./icons/CartIcon";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
