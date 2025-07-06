@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAllProducts } from "../_lib/api";
 import ProductCard from "./ProductCard";
 export const dynamic = "force-static";
@@ -12,7 +13,12 @@ export default async function FeaturedProducts() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {products.length > 0 ? (
           products.map((product) => (
-            <ProductCard key={product.id} product={product} theme="dark" />
+            <Link
+              href={`/product/${product.id}?api=escuelajs`}
+              key={product.id}
+            >
+              <ProductCard product={product} theme="dark" />
+            </Link>
           ))
         ) : (
           <p className="text-center col-span-full">

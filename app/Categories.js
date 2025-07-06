@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { categoryData } from "./_lib/data";
 import Image from "next/image";
 
@@ -20,19 +21,21 @@ export default function Categories() {
             key={category.slug}
             className="relative w-full aspect-square group overflow-hidden bg-gray-100 shadow-md border border-gray-200"
           >
-            <Image
-              src={image}
-              alt={category.name}
-              fill
-              sizes="(max-width: 768px) 50vw, 20vw"
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300"></div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
-              <h3 className="text-white text-center font-semibold px-2">
-                {category.name}
-              </h3>
-            </div>
+            <Link href={`shop/${category.slug}`}>
+              <Image
+                src={image}
+                alt={category.name}
+                fill
+                sizes="(max-width: 768px) 50vw, 20vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300"></div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
+                <h3 className="text-white text-center font-semibold px-2">
+                  {category.name}
+                </h3>
+              </div>
+            </Link>
           </div>
         ))}
       </div>

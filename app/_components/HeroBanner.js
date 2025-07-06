@@ -23,9 +23,9 @@ const ArrowIcon = () => (
 );
 
 // Reusable component for each banner item
-function HeroBannerItem({ imageSrc, altText, title, aspect }) {
+function HeroBannerItem({ imageSrc, altText, title, aspect, href }) {
   return (
-    <Link href="/">
+    <Link href={href}>
       <div
         className={`relative group ${aspect} w-full cursor-pointer overflow-hidden`}
       >
@@ -51,6 +51,7 @@ export default function HeroBanner() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 px-4 md:px-20 py-10">
       <HeroBannerItem
+        href="/shop/men"
         imageSrc={menImage}
         altText="Shop Men"
         title="Shop Men"
@@ -58,6 +59,7 @@ export default function HeroBanner() {
         aspect="aspect-[4/5]"
       />
       <HeroBannerItem
+        href="/shop/women"
         imageSrc={womenImage}
         altText="Shop Women"
         title="Shop Women"
@@ -65,6 +67,7 @@ export default function HeroBanner() {
         aspect="aspect-[4/5]"
       />
       <HeroBannerItem
+        href="/shop/home"
         imageSrc={homeImage}
         altText="Shop Home"
         title="Shop Home"

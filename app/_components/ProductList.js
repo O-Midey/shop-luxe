@@ -6,7 +6,7 @@ export default function ProductList({ heading, products }) {
   return (
     <div>
       <h2 className="text-2xl mb-10">{heading}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products && products.length > 0 ? (
           products.map((product) => (
             <ProductCard key={product.id} product={product} theme="light" />

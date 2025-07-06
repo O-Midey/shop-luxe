@@ -34,6 +34,9 @@ export default function Navbar() {
 
           {/* Links on large screens */}
           <div className="hidden lg:flex space-x-8">
+            <Link href="/" className="text-l">
+              HOME
+            </Link>
             <Link href="/shop/new" className="text-l">
               NEW
             </Link>
@@ -92,6 +95,9 @@ export default function Navbar() {
             </svg>
           </button>
           <nav className="flex flex-col space-y-4">
+            <Link href="/home" onClick={() => setIsOpen(false)}>
+              HOME
+            </Link>
             <Link href="/new" onClick={() => setIsOpen(false)}>
               NEW
             </Link>

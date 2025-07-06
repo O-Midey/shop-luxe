@@ -8,6 +8,10 @@ const nextConfig = {
       "placeimg.com",
       "res.cloudinary.com",
       "i.dummyjson.com",
+      "truongansafety.com",
+      "picsum.photos",
+      "up.yimg.com",
+      "api.lorem.space",
     ],
   },
 };
