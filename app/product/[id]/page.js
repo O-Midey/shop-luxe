@@ -5,8 +5,7 @@ import Image from "next/image";
 
 export default async function ProductPage({ params, searchParams }) {
   const { id } = params;
-  const apiSource = searchParams?.api;
-
+  const apiSource = searchParams?.api; // <- from the URL ?api=escuelajs
   async function getProduct(id, apiSource) {
     if (apiSource === "escuelajs") {
       const res = await fetch(

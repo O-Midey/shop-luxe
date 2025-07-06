@@ -25,10 +25,23 @@ export default async function Page({ params }) {
   let headingText =
     headings[category] || capitalizeWords(category.replace(/-/g, " "));
 
+  // ----------- NEW / SALE with escuelajs -----------
   if (category === "new" || category === "sale") {
-    const allProductsData = await getAllProducts();
-    products = allProductsData.sort(() => Math.random() - 0.5).slice(0, 15);
-  } else if (category === "men") {
+    const allProductsData = await getAllProducts(); // escuelajs
+    products = allProductsData
+      .map((p) => ({
+        id: p.id,
+        title: p.title || p.name,
+        price: p.price,
+        category: p.category?.name || p.category || "misc",
+        images: Array.isArray(p.images) ? p.images : [p.images],
+      }))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 15);
+  }
+
+  // ----------- MEN / HOME / WOMEN with dummyjson -----------
+  else if (category === "men") {
     const shirts = await safeGetProducts("mens-shirts");
     const shoes = await safeGetProducts("mens-shoes");
     const watches = await safeGetProducts("mens-watches");
@@ -40,14 +53,13 @@ export default async function Page({ params }) {
     const kitchen = await safeGetProducts("kitchen-accessories");
     products = [...furniture, ...groceries, ...homeDecoration, ...kitchen];
   } else if (category === "women") {
-    const beauty = await safeGetProducts("beuty");
+    const beauty = await safeGetProducts("beauty");
     const fragrances = await safeGetProducts("fragrances");
     const bags = await safeGetProducts("womens-bags");
     const dresses = await safeGetProducts("womens-dresses");
     const jewellery = await safeGetProducts("womens-jewellery");
     const shoes = await safeGetProducts("womens-shoes");
     const watches = await safeGetProducts("womens-watches");
-
     products = [
       ...beauty,
       ...fragrances,
@@ -57,7 +69,10 @@ export default async function Page({ params }) {
       ...shoes,
       ...watches,
     ];
-  } else {
+  }
+
+  // ----------- generic dummyjson category fallback -----------
+  else {
     const data = await getProductsByCategory(category);
     products = data?.products ?? [];
   }
