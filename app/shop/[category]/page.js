@@ -76,10 +76,14 @@ export default async function Page({ params }) {
     const data = await getProductsByCategory(category);
     products = data?.products ?? [];
   }
+  let source = "dummyjson";
+  if (category === "new" || category === "sale") {
+    source = "escuelajs";
+  }
 
   return (
     <div className="px-20 py-10 capitalize">
-      <ProductList heading={headingText} products={products} />
+      <ProductList heading={headingText} products={products} source={source} />
     </div>
   );
 }
