@@ -1,7 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
+import Banner from "./_components/Banner";
 
 export const metadata = {
   title: "Welcome to Shop Luxe",
@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="min-h-screen  bg-white flex flex-col">
         <header className="">
+          <Banner />
           <Navbar />
         </header>
 

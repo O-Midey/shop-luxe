@@ -1,5 +1,6 @@
 import { getProducts } from "../_lib/api";
 import ProductCard from "./ProductCard";
+export const dynamic = "force-static";
 
 export default async function FeaturedProducts() {
   const data = await getProducts();

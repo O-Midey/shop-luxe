@@ -37,10 +37,10 @@ export default function Navbar() {
             <Link href="/new" className="text-l">
               NEW
             </Link>
-            <Link href="/" className="text-l">
+            <Link href="/sale" className="text-l">
               SALE
             </Link>
-            <Link href="/" className="text-l">
+            <Link href="/#categories" className="text-l">
               CATEGORIES
             </Link>
           </div>
@@ -92,10 +92,10 @@ export default function Navbar() {
             </svg>
           </button>
           <nav className="flex flex-col space-y-4">
-            <Link href="/" onClick={() => setIsOpen(false)}>
+            <Link href="/new" onClick={() => setIsOpen(false)}>
               NEW
             </Link>
-            <Link href="/" onClick={() => setIsOpen(false)}>
+            <Link href="/sale" onClick={() => setIsOpen(false)}>
               SALE
             </Link>
             <Link href="/" onClick={() => setIsOpen(false)}>
