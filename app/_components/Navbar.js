@@ -34,7 +34,7 @@ export default function Navbar() {
 
           {/* Links on large screens */}
           <div className="hidden lg:flex space-x-8">
-            <Link href="/" className="text-l">
+            <Link href="/new" className="text-l">
               NEW
             </Link>
             <Link href="/" className="text-l">

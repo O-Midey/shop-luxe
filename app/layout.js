@@ -18,9 +18,7 @@ export default function RootLayout({ children }) {
 
         <main className="flex-1 py-10">{children}</main>
 
-        <footer className="p-6 text-center">
-          © 2025 Shop Luxe. All rights reserved.
-        </footer>
+        <Footer />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import menImage from "/public/men.avif";
 import womenImage from "/public/women.avif";
+import homeImage from "/public/home.jpg";
 
 // Reusable SVG icon component
 const ArrowIcon = () => (
@@ -50,7 +51,7 @@ function HeroBannerItem({ imageSrc, altText, title, minHeightClass }) {
 
 export default function HeroBanner() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-0.5 px-4 md:px-20 py-10">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 px-4 md:px-20 py-10">
       <HeroBannerItem
         imageSrc={menImage}
         altText="Shop Men"
@@ -61,6 +62,12 @@ export default function HeroBanner() {
         imageSrc={womenImage}
         altText="Shop Women"
         title="Shop Women"
+        minHeightClass="min-h-100"
+      />
+      <HeroBannerItem
+        imageSrc={homeImage}
+        altText="Shop Home"
+        title="Shop Home"
         minHeightClass="min-h-100"
       />
     </div>
