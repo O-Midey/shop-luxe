@@ -34,10 +34,10 @@ export default function Navbar() {
 
           {/* Links on large screens */}
           <div className="hidden lg:flex space-x-8">
-            <Link href="/new" className="text-l">
+            <Link href="/shop/new" className="text-l">
               NEW
             </Link>
-            <Link href="/sale" className="text-l">
+            <Link href="/shop/sale" className="text-l">
               SALE
             </Link>
             <Link href="/#categories" className="text-l">

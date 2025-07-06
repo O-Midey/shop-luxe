@@ -1,9 +1,9 @@
-import { getProducts } from "../_lib/api";
+import { getAllProducts } from "../_lib/api";
 import ProductCard from "./ProductCard";
 export const dynamic = "force-static";
 
 export default async function FeaturedProducts() {
-  const data = await getProducts();
+  const data = await getAllProducts();
   const products = data.sort(() => Math.random() - 0.5).slice(0, 9);
 
   return (

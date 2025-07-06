@@ -1,14 +1,31 @@
-export async function getProducts() {
-  try {
-    const res = await fetch("https://api.escuelajs.co/api/v1/products", {
-      cache: "no-store",
-    });
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.error("Error fetching products:", err);
-  }
-}
+// export async function getProducts(category) {
+//   if (!category  || category === "name" || category === "sale") {
+//     try {
+//       const res = await fetch("https://api.escuelajs.co/api/v1/products", {
+//         cache: "no-store",
+//       });
+//       const data = await res.json();
+//       return data;
+//     } catch (err) {
+//       console.error("Error fetching products:", err);
+//     }
+//   }
+
+//   if (category) {
+//     try {
+//       const res = await fetch(
+//         `https://dummyjson.com/products/category/${category}`,
+//         {
+//           cache: "no-store",
+//         }
+//       );
+//       const data = await res.json();
+//       return data;
+//     } catch (err) {
+//       console.error("Error fetching products:", err);
+//     }
+//   }
+// }
 
 // export async function getCategories() {
 //   try {
@@ -38,3 +55,34 @@ export async function getProducts() {
 //     return [];
 //   }
 // }
+
+export async function getProducts(category) {
+  try {
+    const res = await fetch(
+      `https://dummyjson.com/products/category/${category}`,
+      {
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) throw new Error("Failed to fetch");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    return [];
+  }
+}
+
+export async function getAllProducts() {
+  try {
+    const res = await fetch("https://api.escuelajs.co/api/v1/products", {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Failed to fetch");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    return [];
+  }
+}
