@@ -16,6 +16,7 @@ const nextConfig = {
       "assets.stickpng.com",
       "upload.wikimedia.org",
       "media.4-paws.org",
+      "encrypted-tbn0.gstatic.com",
     ],
   },
 };

@@ -80,7 +80,13 @@ export async function getAllProducts() {
     });
     if (!res.ok) throw new Error("Failed to fetch");
     const data = await res.json();
-    return data;
+
+    // Filter out products with category.name === "Testing Category API"
+    const filtered = data.filter(
+      (product) => product.category?.name !== "Testing Category API"
+    );
+
+    return filtered;
   } catch (err) {
     console.error("Error fetching products:", err);
     return [];

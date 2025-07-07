@@ -15,7 +15,7 @@ export default function WishlistIcon({
   const classes = `text-l text-${color}`;
 
   return (
-    <div className="relative inline-flex items-center">
+    <div className="relative inline-flex align-middle items-center">
       <svg
         onClick={(e) => {
           if (product) {
