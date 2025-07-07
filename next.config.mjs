@@ -13,6 +13,7 @@ const nextConfig = {
       "up.yimg.com",
       "api.lorem.space",
       "placehold.co",
+      "assets.stickpng.com",
     ],
   },
 };

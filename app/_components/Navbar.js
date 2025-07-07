@@ -63,7 +63,7 @@ export default function Navbar() {
           {/* Icons only on large screens */}
           <div className="hidden lg:flex items-center space-x-6">
             <UserIcon />
-            <Link href="/">
+            <Link href="/wishlist">
               <Wishlist />
             </Link>
             <CartIcon />

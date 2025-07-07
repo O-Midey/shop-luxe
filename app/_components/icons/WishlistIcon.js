@@ -1,22 +1,28 @@
 "use client";
-
 import { useWishlistStore } from "@/app/_store/wishlistStore";
-import Link from "next/link";
+import { useEffect } from "react";
 
-export default function Wishlist({ color = "black", type = "link" }) {
-  const addToWishList = useWishlistStore((state) => state.addToWishList);
+export default function WishlistIcon({ color = "black", product }) {
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+  const isInWishlist = useWishlistStore((state) =>
+    state.isInWishlist(product?.id)
+  );
 
   const classes = `text-l text-${color}`;
 
-  const icon = (
+  return (
     <svg
+      onClick={() => {
+        toggleWishlist(product);
+        const current = useWishlistStore.getState().items; // ✅ direct snapshot
+        console.log("Current wishlist:", current);
+      }}
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={isInWishlist ? "black" : "none"}
       viewBox="0 0 24 24"
       strokeWidth={2}
       stroke="currentColor"
-      className="size-6 hover:scale-110 transition-all"
+      className={`size-6 hover:scale-110 transition-all ${classes}`}
     >
       <path
         strokeLinecap="round"
@@ -25,10 +31,4 @@ export default function Wishlist({ color = "black", type = "link" }) {
       />
     </svg>
   );
-
-  if (type === "button") {
-    return <button className={classes}>{icon}</button>;
-  }
-
-  return { icon };
 }

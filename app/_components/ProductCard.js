@@ -30,7 +30,7 @@ export default function ProductCard({
 
           <div className="absolute top-2 right-2 flex flex-col space-y-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
             <button className="p-2 rounded-full bg-white shadow hover:bg-gray-200 transition hover:scale-110">
-              <Wishlist color="black" />
+              <Wishlist color="black" product={product} />
             </button>
             <button className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition hover:scale-110">
               <AddToCart />

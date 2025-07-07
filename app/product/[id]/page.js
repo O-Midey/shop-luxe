@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import Accordion from "@/app/_components/Accordion";
 import Wishlist from "@/app/_components/icons/WishlistIcon";
 import QuantitySelector from "@/app/_components/QuantitySelector";
 import Image from "next/image";
 
 export default function ProductPage({ params, searchParams }) {
-  const { id } = use(params);
-  const apiSource = use(searchParams?.api || "dummyjson");
+  const { id } = params;
+  const apiSource = searchParams?.api || "dummyjson";
 
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
@@ -139,7 +139,7 @@ export default function ProductPage({ params, searchParams }) {
               Add to Cart
             </button>
             <div className="p-4 border">
-              <Wishlist />
+              <Wishlist product={product} />
             </div>
           </div>
 

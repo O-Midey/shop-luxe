@@ -3,24 +3,33 @@ import { create } from "zustand";
 export const useWishlistStore = create((set, get) => ({
   items: [],
 
-  addToWishlist: (product) =>
+  addToWishlist: (product) => {
+    if (!product || !product.id) return;
     set((state) => ({
       items: [...state.items, product],
-    })),
+    }));
+  },
 
-  removeFromWishlist: (id) =>
+  removeFromWishlist: (id) => {
+    if (!id) return;
     set((state) => ({
       items: state.items.filter((item) => item.id !== id),
-    })),
+    }));
+  },
 
   toggleWishlist: (product) => {
-    const exists = get().items.some((item) => item.id === product.id);
+    if (!product || !product.id) return;
+    const { items, removeFromWishlist, addToWishlist } = get();
+    const exists = items.some((item) => item.id === product.id);
     if (exists) {
-      get().removeFromWishlist(product.id);
+      removeFromWishlist(product.id);
     } else {
-      get().addToWishlist(product);
+      addToWishlist(product);
     }
   },
 
-  isInWishlist: (id) => get().items.some((item) => item.id === id),
+  isInWishlist: (id) => {
+    if (!id) return false;
+    return get().items.some((item) => item.id === id);
+  },
 }));
