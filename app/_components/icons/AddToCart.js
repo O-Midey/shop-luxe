@@ -1,4 +1,8 @@
+import { useCartStore } from "@/app/_store/cartStore";
+
 export default function AddToCart({ color = "black" }) {
+  const addToCart = useCartStore((state) => state.addToCart);
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +10,7 @@ export default function AddToCart({ color = "black" }) {
       viewBox="0 0 24 24"
       strokeWidth={2}
       stroke="currentColor"
+      onClick={() => addToCart(product)}
       className={`size-6 hover:scale-110 transition-all text-${color}`}
     >
       <path
