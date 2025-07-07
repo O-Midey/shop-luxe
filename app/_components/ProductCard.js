@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Wishlist from "./icons/Wishlist";
+import Wishlist from "./icons/WishlistIcon";
 import AddToCart from "./icons/AddToCart";
 import Link from "next/link";
 

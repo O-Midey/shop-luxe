@@ -4,7 +4,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 import SearchButton from "./icons/SearchButton";
 import UserIcon from "./icons/UserIcon";
-import Wishlist from "./icons/Wishlist";
+import Wishlist from "./icons/WishlistIcon";
 import CartIcon from "./icons/CartIcon";
 
 export default function Navbar() {
@@ -63,7 +63,9 @@ export default function Navbar() {
           {/* Icons only on large screens */}
           <div className="hidden lg:flex items-center space-x-6">
             <UserIcon />
-            <Wishlist />
+            <Link href="/">
+              <Wishlist />
+            </Link>
             <CartIcon />
           </div>
         </div>

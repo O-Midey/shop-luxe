@@ -1,10 +1,12 @@
+"use client";
+
+import { useWishlistStore } from "@/app/_store/wishlistStore";
 import Link from "next/link";
 
-export default function Wishlist({
-  color = "black",
-  type = "link",
-  href = "/",
-}) {
+export default function Wishlist({ color = "black", type = "link" }) {
+  const addToWishList = useWishlistStore((state) => state.addToWishList);
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+
   const classes = `text-l text-${color}`;
 
   const icon = (
@@ -28,9 +30,5 @@ export default function Wishlist({
     return <button className={classes}>{icon}</button>;
   }
 
-  return (
-    <Link href={href} className={classes}>
-      {icon}
-    </Link>
-  );
+  return { icon };
 }

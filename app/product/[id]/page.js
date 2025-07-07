@@ -1,43 +1,60 @@
+"use client";
+
+import { useState, useEffect, use } from "react";
 import Accordion from "@/app/_components/Accordion";
-import Wishlist from "@/app/_components/icons/Wishlist";
+import Wishlist from "@/app/_components/icons/WishlistIcon";
 import QuantitySelector from "@/app/_components/QuantitySelector";
 import Image from "next/image";
 
-export default async function ProductPage({ params, searchParams }) {
-  const { id } = params;
-  const apiSource = searchParams?.api || "dummyjson";
+export default function ProductPage({ params, searchParams }) {
+  const { id } = use(params);
+  const apiSource = use(searchParams?.api || "dummyjson");
 
-  async function getProduct(id, apiSource) {
-    if (apiSource === "escuelajs") {
-      const res = await fetch(
-        `https://api.escuelajs.co/api/v1/products/${id}`,
-        {
-          cache: "no-store",
-        }
-      );
-      if (!res.ok) throw new Error("Product not found in escuelajs");
+  const [product, setProduct] = useState(null);
+  const [mainImage, setMainImage] = useState("");
+
+  useEffect(() => {
+    async function getProduct(id, apiSource) {
+      if (apiSource === "escuelajs") {
+        const res = await fetch(
+          `https://api.escuelajs.co/api/v1/products/${id}`
+        );
+        if (!res.ok) throw new Error("Product not found in escuelajs");
+        return await res.json();
+      }
+
+      const res = await fetch(`https://dummyjson.com/products/${id}`);
+      if (!res.ok) throw new Error("Product not found in dummyjson");
       return await res.json();
     }
 
-    const res = await fetch(`https://dummyjson.com/products/${id}`, {
-      cache: "no-store",
+    getProduct(id, apiSource).then((data) => {
+      setProduct(data);
+      const image =
+        data.images?.[0] ||
+        data.images ||
+        data.category?.image ||
+        "/placeholder.png";
+      setMainImage(image);
     });
-    if (!res.ok) throw new Error("Product not found in dummyjson");
-    return await res.json();
-  }
+  }, [id, apiSource]);
 
-  const product = await getProduct(id, apiSource);
+  if (!product) {
+    return (
+      <div className="flex justify-center items-center min-h-[50vh]">
+        Loading...
+      </div>
+    );
+  }
 
   const title = product.title || product.name || "Unnamed Product";
   const price = product.price ? Math.round(product.price) : "N/A";
   const category = product.category?.name || product.category || "Unknown";
   const description =
     product.description || product.details || "No description available.";
-  const image =
-    product.images?.[0] ||
-    product.images ||
-    product.category?.image ||
-    "/placeholder.png";
+  const images = Array.isArray(product.images)
+    ? product.images
+    : [product.images || product.category?.image || "/placeholder.png"];
 
   const hasSizes = ["clothes", "tops", "shirts", "dresses"].some((cat) =>
     category.toLowerCase().includes(cat)
@@ -48,12 +65,33 @@ export default async function ProductPage({ params, searchParams }) {
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 items-start">
         <div className="max-w-md">
           <Image
-            src={image}
+            src={mainImage}
             alt={title}
             width={500}
             height={500}
             className="w-full max-h-[500px] object-contain shadow transition duration-300"
           />
+
+          <div className="flex gap-2 mt-4">
+            {images.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setMainImage(img)}
+                className={`w-16 h-16 border rounded overflow-hidden ${
+                  mainImage === img ? "ring-2 ring-black" : ""
+                }`}
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={img}
+                    alt={`${title} thumbnail ${idx}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="space-y-6">

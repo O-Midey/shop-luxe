@@ -12,6 +12,7 @@ const nextConfig = {
       "picsum.photos",
       "up.yimg.com",
       "api.lorem.space",
+      "placehold.co",
     ],
   },
 };
