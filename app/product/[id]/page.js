@@ -3,24 +3,28 @@ import Wishlist from "@/app/_components/icons/Wishlist";
 import QuantitySelector from "@/app/_components/QuantitySelector";
 import Image from "next/image";
 
-async function getProduct(id, apiSource) {
-  if (apiSource === "escuelajs") {
-    const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) throw new Error("Not found in escuelajs");
-    return await res.json();
-  }
-  const res = await fetch(`https://dummyjson.com/products/${id}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error("Not found in dummyjson");
-  return await res.json();
-}
-
 export default async function ProductPage({ params, searchParams }) {
   const { id } = params;
   const apiSource = searchParams?.api || "dummyjson";
+
+  async function getProduct(id, apiSource) {
+    if (apiSource === "escuelajs") {
+      const res = await fetch(
+        `https://api.escuelajs.co/api/v1/products/${id}`,
+        {
+          cache: "no-store",
+        }
+      );
+      if (!res.ok) throw new Error("Product not found in escuelajs");
+      return await res.json();
+    }
+
+    const res = await fetch(`https://dummyjson.com/products/${id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Product not found in dummyjson");
+    return await res.json();
+  }
 
   const product = await getProduct(id, apiSource);
 
@@ -30,7 +34,8 @@ export default async function ProductPage({ params, searchParams }) {
   const description =
     product.description || product.details || "No description available.";
   const image =
-    (Array.isArray(product.images) ? product.images[0] : product.images) ||
+    product.images?.[0] ||
+    product.images ||
     product.category?.image ||
     "/placeholder.png";
 
@@ -47,7 +52,7 @@ export default async function ProductPage({ params, searchParams }) {
             alt={title}
             width={500}
             height={500}
-            className="w-full max-h-[500px] object-contain shadow"
+            className="w-full max-h-[500px] object-contain shadow transition duration-300"
           />
         </div>
 
@@ -100,15 +105,53 @@ export default async function ProductPage({ params, searchParams }) {
             </div>
           </div>
 
-          <Accordion title="Product Information">
-            <p>{description}</p>
-          </Accordion>
-          <Accordion title="Shipping Info">
-            <p>Ships worldwide within 3-7 days. Free on orders over $50.</p>
-          </Accordion>
-          <Accordion title="Return Policy">
-            <p>30-day returns, unworn and in original packaging.</p>
-          </Accordion>
+          <div>
+            <Accordion title="Product Information">
+              <p>{description}</p>
+            </Accordion>
+            <Accordion title="Return & Refund Policy">
+              <p>
+                We want you to be completely satisfied with your purchase. If
+                you’re not happy, return it within <strong>30 days</strong> for
+                a full refund or exchange.
+              </p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Items must be unworn, unwashed, and in original packaging.
+                </li>
+                <li>
+                  Refunds within 5-7 business days after we receive your return.
+                </li>
+                <li>
+                  Return shipping is on the customer unless item was defective.
+                </li>
+              </ul>
+              <p>
+                To start a return, contact{" "}
+                <a
+                  href="mailto:support@example.com"
+                  className="text-blue-600 underline"
+                >
+                  support@example.com
+                </a>
+                .
+              </p>
+            </Accordion>
+            <Accordion title="Shipping Info">
+              <p>
+                We offer <strong>fast & reliable shipping worldwide.</strong>{" "}
+                Orders processed within 1-2 business days.
+              </p>
+              <ul className="list-disc list-inside">
+                <li>Standard shipping: 3-7 business days.</li>
+                <li>Express shipping: 1-3 business days.</li>
+                <li>Free shipping on orders over $50.</li>
+              </ul>
+              <p>
+                Once your order ships, you’ll receive tracking info by email.
+              </p>
+            </Accordion>
+          </div>
         </div>
       </div>
     </div>

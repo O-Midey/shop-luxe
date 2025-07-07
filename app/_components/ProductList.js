@@ -1,3 +1,4 @@
+import React from "react";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 
@@ -21,7 +22,7 @@ export default function ProductList({
           ))
         ) : (
           <div className="col-span-full text-center py-10">
-            <p className="mb-4">No Product available at this time :(</p>
+            <p>No Product available at this time :(</p>
             <Link
               href="/"
               className="text-gray-800 hover:text-gray-600 underline"
