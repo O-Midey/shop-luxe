@@ -19,12 +19,12 @@ export default async function FeaturedProducts() {
               key={product.id}
               product={product}
               theme="dark"
-              source="escuelajs" // ✅ pass it here so ProductCard builds URL correctly
+              source="escuelajs" //
             />
           ))
         ) : (
           <p className="text-center col-span-full">
-            No featured products at this time.
+            No featured products at this time ☹️
           </p>
         )}
       </div>

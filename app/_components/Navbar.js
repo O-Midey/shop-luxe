@@ -60,12 +60,16 @@ export default function Navbar() {
         <div className="flex items-center justify-end space-x-6 flex-1">
           <SearchButton />
 
-          {/* Icons only on large screens */}
           <div className="hidden lg:flex items-center space-x-6">
             <UserIcon />
-            <Link href="/wishlist">
-              <Wishlist />
+
+            <Link
+              href="/wishlist"
+              className="relative inline-flex items-center"
+            >
+              <Wishlist showCountBadge />
             </Link>
+
             <CartIcon />
           </div>
         </div>

@@ -14,6 +14,8 @@ const nextConfig = {
       "api.lorem.space",
       "placehold.co",
       "assets.stickpng.com",
+      "upload.wikimedia.org",
+      "media.4-paws.org",
     ],
   },
 };
