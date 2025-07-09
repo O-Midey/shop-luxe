@@ -6,9 +6,11 @@ import SearchButton from "./icons/SearchButton";
 import UserIcon from "./icons/UserIcon";
 import Wishlist from "./icons/WishlistIcon";
 import CartIcon from "./icons/CartIcon";
+import { useCartStore } from "@/app/_store/cartStore";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const totalQuantity = useCartStore((state) => state.totalQuantity());
 
   return (
     <>
@@ -62,15 +64,17 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center space-x-6">
             <UserIcon />
-
-            <Link
-              href="/wishlist"
-              className="relative inline-flex items-center"
-            >
+            <Link href="/wishlist">
               <Wishlist showCountBadge />
             </Link>
-
-            <CartIcon />
+            <Link href="/cart" className="relative">
+              <CartIcon />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalQuantity}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </nav>
@@ -125,7 +129,7 @@ export default function Navbar() {
       {/* OVERLAY */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+          className="fixed w-full inset-0 bg-black bg-opacity-40 z-40"
           onClick={() => setIsOpen(false)}
         />
       )}

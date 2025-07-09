@@ -39,7 +39,7 @@ export default function WishlistIcon({
       </svg>
 
       {showCountBadge && count > 0 && (
-        <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
           {count}
         </span>
       )}

@@ -51,4 +51,5 @@ export const useCartStore = create((set, get) => ({
       (total, item) => total + item.quantity * Math.round(item.price),
       0
     ),
+  isInCart: (id) => get().items.some((item) => item.id === id),
 }));

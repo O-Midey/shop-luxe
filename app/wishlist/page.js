@@ -10,9 +10,8 @@ export default function WishlistPage() {
   );
 
   return (
-    <div className="px-20 py-12 w-full mx-auto">
-      <h1 className="text-3xl font-semibold mb-6">My Wishlist</h1>
-
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl mb-6">Your Wishlist</h1>
       {items.length === 0 ? (
         <div className="text-center py-10">
           <p className="text-gray-500 mb-4">

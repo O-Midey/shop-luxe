@@ -1,30 +1,55 @@
+"use client";
 import { useCartStore } from "@/app/_store/cartStore";
 
-export default function AddToCart({ color = "black" }) {
+export default function AddToCart({
+  product,
+  color = "black",
+  showCountBadge = false,
+}) {
+  const isInCart = useCartStore((state) => state.isInCart);
   const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const items = useCartStore((state) => state.items);
+
+  const filled = product && isInCart(product.id);
+  const classes = `text-l text-${color}`;
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      onClick={() => addToCart(product)}
-      className={`size-6 hover:scale-110 transition-all text-${color}`}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M2.25 3h1.386c.51 0 .955.343 1.087.835L5.91
-           8.607m0 0H18.1a1.125 1.125 0 0 1 1.098
-           1.374l-1.347 5.385a1.125 1.125 0 0 1-1.098.876H8.309a1.125
-           1.125 0 0 1-1.098-.876l-1.3-5.2Zm0
-           0L4.723 4.418A1.125 1.125 0 0 0
-           3.638 3.75H2.25m6 14.25a.75.75 0 1 0
-           0 1.5.75.75 0 0 0 0-1.5Zm8.25 0a.75.75
-           0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"
-      />
-    </svg>
+    <div className="relative">
+      <svg
+        onClick={() => {
+          if (!product) return;
+          if (filled) {
+            removeFromCart(product.id);
+          } else {
+            addToCart(product);
+          }
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+        fill={filled ? "black" : "none"}
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className={`size-6 hover:scale-110 transition-all ${classes}`}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5
+          m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25
+          a1.125 1.125 0 0 1-1.12-1.243l1.264-12
+          A1.125 1.125 0 0 1 5.513 7.5h12.974
+          c.576 0 1.059.435 1.119 1.007ZM8.625 10.5
+          a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0
+          a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+        />
+      </svg>
+
+      {showCountBadge && items.length > 0 && (
+        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+          {items.length}
+        </span>
+      )}
+    </div>
   );
 }

@@ -33,7 +33,7 @@ export default function ProductCard({
             <Wishlist color="black" product={product} />
           </button>
           <button className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition hover:scale-110">
-            <AddToCart />
+            <AddToCart product={product} />
           </button>
         </div>
       </div>
