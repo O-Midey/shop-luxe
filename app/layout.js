@@ -5,7 +5,7 @@ import Banner from "./_components/Banner";
 
 export const metadata = {
   title: "Welcome to Shop Luxe",
-  description: "Your one stop for everything and anything",
+  description: "Your one store for everything",
 };
 
 export default function RootLayout({ children }) {
