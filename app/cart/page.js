@@ -12,7 +12,6 @@ export default function CartPage() {
     totalAmount,
   } = useCartStore();
 
-  console.log(items);
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl mb-6">Your Cart</h1>
@@ -35,13 +34,13 @@ export default function CartPage() {
             >
               <div className="flex items-center align-middle gap-6">
                 <Image
-                  alt={item.name}
-                  href={item.image || "/placeholder.png"}
+                  alt={item.title || "Product image"}
+                  src={item.thumbnail || "/placeholder.png"}
                   width={50}
                   height={50}
                 />
 
-                <p>{item.title || item.name}</p>
+                <p>{item.title}</p>
                 <p className="text-gray-500">
                   ${Math.round(item.price)} x {item.quantity}
                 </p>

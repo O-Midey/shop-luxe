@@ -6,13 +6,13 @@ export default function Footer() {
     <footer className="py-20 bg-black text-white">
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-10 lg:gap-40 text-center lg:text-left">
         <div className="flex flex-col">
-          <Link href="/" className="py-2">
+          <Link href="/shop/men" className="py-2">
             Men
           </Link>
-          <Link href="/" className="py-2">
+          <Link href="/shop/women" className="py-2">
             Women
           </Link>
-          <Link href="/" className="py-2">
+          <Link href="/#categories" className="py-2">
             Categories
           </Link>
           <Link href="/" className="py-2">
@@ -51,7 +51,7 @@ export default function Footer() {
                 name="email"
                 type="email"
                 required
-                className="w-full mt-2 p-2 block text-black bg-white"
+                className="w-full mt-2 p-2 block text-center text-black bg-white"
               />
             </div>
             <div className="flex items-center justify-center lg:justify-start">

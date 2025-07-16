@@ -3,16 +3,12 @@ import Wishlist from "./icons/WishlistIcon";
 import AddToCart from "./icons/AddToCart";
 import Link from "next/link";
 
-export default function ProductCard({
-  product,
-  theme = "light",
-  source = "dummyjson",
-}) {
+export default function ProductCard({ product, theme = "light" }) {
   if (!product) return null;
 
   const textColor = theme === "light" ? "text-black" : "text-white";
   const categoryColor = theme === "light" ? "text-gray-500" : "text-gray-400";
-  const href = `/product/${product.id}?api=${source}`;
+  const href = `/product/${product.id}`;
 
   return (
     <div className="flex flex-col">
@@ -21,7 +17,7 @@ export default function ProductCard({
           <Image
             sizes="(max-width: 1024px) 50vw, 25vw"
             src={product.images?.[0] || "/placeholder.png"}
-            alt={product.title || product.name || "Product image"}
+            alt={product.title || "Product image"}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
@@ -41,12 +37,12 @@ export default function ProductCard({
       <Link href={href}>
         <div className={`flex justify-between items-center mt-3 ${textColor}`}>
           <p className="text-sm font-medium line-clamp-1">
-            {product.title || product.name || "Unnamed Product"}
+            {product.title || "Unnamed Product"}
           </p>
           <p>${product.price ? Math.round(product.price) : "N/A"}</p>
         </div>
         <p className={`${categoryColor} capitalize text-sm`}>
-          {product.category?.name || product.category}
+          {product.category}
         </p>
       </Link>
     </div>

@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { getAllProducts } from "../_lib/api";
+import getAllProducts from "../_lib/getAllProduct";
 import ProductCard from "./ProductCard";
 
 export const dynamic = "force-static";
 
 export default async function FeaturedProducts() {
-  // Fetch from ESCUELAJS
   const data = await getAllProducts();
   const products = data.sort(() => Math.random() - 0.5).slice(0, 9);
 
@@ -15,12 +14,7 @@ export default async function FeaturedProducts() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {products.length ? (
           products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              theme="dark"
-              source="escuelajs" //
-            />
+            <ProductCard key={product.id} product={product} theme="dark" />
           ))
         ) : (
           <p className="text-center col-span-full">

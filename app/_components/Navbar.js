@@ -63,7 +63,7 @@ export default function Navbar() {
           <SearchButton />
 
           <div className="hidden lg:flex items-center space-x-6">
-            <UserIcon />
+            {/* <UserIcon /> */}
             <Link href="/wishlist">
               <Wishlist showCountBadge />
             </Link>
@@ -118,7 +118,7 @@ export default function Navbar() {
               CATEGORIES
             </Link>
             <div className="flex space-x-4 pt-6">
-              <UserIcon />
+              {/* <UserIcon /> */}
               <Wishlist />
               <CartIcon />
             </div>

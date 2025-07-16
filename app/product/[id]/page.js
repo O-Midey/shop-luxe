@@ -1,60 +1,20 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import getProduct from "@/app/_lib/getProduct";
 import Accordion from "@/app/_components/Accordion";
 import Wishlist from "@/app/_components/icons/WishlistIcon";
 import QuantitySelector from "@/app/_components/QuantitySelector";
 import Image from "next/image";
 
-export default function ProductPage({ params, searchParams }) {
-  const { id } = params;
-  const apiSource = searchParams?.api || "dummyjson";
+export default async function ProductPage({ params }) {
+  const product = await getProduct(params.id);
 
-  const [product, setProduct] = useState(null);
-  const [mainImage, setMainImage] = useState("");
-
-  useEffect(() => {
-    async function getProduct(id, apiSource) {
-      if (apiSource === "escuelajs") {
-        const res = await fetch(
-          `https://api.escuelajs.co/api/v1/products/${id}`
-        );
-        if (!res.ok) throw new Error("Product not found in escuelajs");
-        return await res.json();
-      }
-
-      const res = await fetch(`https://dummyjson.com/products/${id}`);
-      if (!res.ok) throw new Error("Product not found in dummyjson");
-      return await res.json();
-    }
-
-    getProduct(id, apiSource).then((data) => {
-      setProduct(data);
-      const image =
-        data.images?.[0] ||
-        data.images ||
-        data.category?.image ||
-        "/placeholder.png";
-      setMainImage(image);
-    });
-  }, [id, apiSource]);
-
-  if (!product) {
-    return (
-      <div className="flex justify-center items-center min-h-[50vh]">
-        Loading...
-      </div>
-    );
-  }
-
-  const title = product.title || product.name || "Unnamed Product";
+  const title = product.title || "Unnamed Product";
   const price = product.price ? Math.round(product.price) : "N/A";
-  const category = product.category?.name || product.category || "Unknown";
-  const description =
-    product.description || product.details || "No description available.";
+  const category = product.category || "Unknown";
+  const description = product.description || "No description available.";
   const images = Array.isArray(product.images)
     ? product.images
-    : [product.images || product.category?.image || "/placeholder.png"];
+    : [product.thumbnail || "/placeholder.png"];
+  const mainImage = images[0];
 
   const hasSizes = ["clothes", "tops", "shirts", "dresses"].some((cat) =>
     category.toLowerCase().includes(cat)
@@ -74,12 +34,9 @@ export default function ProductPage({ params, searchParams }) {
 
           <div className="flex gap-2 mt-4">
             {images.map((img, idx) => (
-              <button
+              <div
                 key={idx}
-                onClick={() => setMainImage(img)}
-                className={`w-16 h-16 border rounded overflow-hidden ${
-                  mainImage === img ? "ring-2 ring-black" : ""
-                }`}
+                className={`w-16 h-16 border rounded overflow-hidden`}
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -89,7 +46,7 @@ export default function ProductPage({ params, searchParams }) {
                     className="object-cover"
                   />
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         </div>
