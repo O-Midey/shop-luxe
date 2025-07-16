@@ -108,13 +108,13 @@ export default function Navbar() {
             <Link href="/home" onClick={() => setIsOpen(false)}>
               HOME
             </Link>
-            <Link href="/new" onClick={() => setIsOpen(false)}>
+            <Link href="/shop/new" onClick={() => setIsOpen(false)}>
               NEW
             </Link>
-            <Link href="/sale" onClick={() => setIsOpen(false)}>
+            <Link href="/shop/sale" onClick={() => setIsOpen(false)}>
               SALE
             </Link>
-            <Link href="/" onClick={() => setIsOpen(false)}>
+            <Link href="/#categories" onClick={() => setIsOpen(false)}>
               CATEGORIES
             </Link>
             <div className="flex space-x-4 pt-6">

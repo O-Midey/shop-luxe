@@ -53,7 +53,7 @@ export default async function Page({ params }) {
   }
 
   return (
-    <div className="px-20 py-10 capitalize">
+    <div className="px-10 py-10 capitalize">
       <ProductList heading={displayHeading} products={products} />
     </div>
   );

@@ -29,8 +29,20 @@ export default function Categories() {
                 sizes="(max-width: 768px) 50vw, 20vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300"></div>
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
+
+              <div
+                className="absolute inset-0 
+      bg-black/40 md:bg-black/0 
+      group-hover:bg-black/50 
+      transition duration-300"
+              ></div>
+
+              <div
+                className="absolute inset-0 flex items-center justify-center 
+      opacity-100 md:opacity-0 
+      group-hover:opacity-100 
+      transition duration-300 pointer-events-none"
+              >
                 <h3 className="text-white text-center font-semibold px-2">
                   {category.name}
                 </h3>

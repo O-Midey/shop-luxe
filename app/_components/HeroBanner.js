@@ -4,7 +4,7 @@ import womenImage from "/public/women.avif";
 import homeImage from "/public/home.jpg";
 import Link from "next/link";
 
-// Reusable SVG icon component
+// SVG icon
 const ArrowIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,6 @@ const ArrowIcon = () => (
   </svg>
 );
 
-// Reusable component for each banner item
 function HeroBannerItem({ imageSrc, altText, title, aspect, href }) {
   return (
     <Link href={href}>
@@ -35,9 +34,31 @@ function HeroBannerItem({ imageSrc, altText, title, aspect, href }) {
           alt={altText}
           className="object-cover transition-all duration-500 group-hover:scale-105"
         />
-        <div className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full bg-black opacity-0 group-hover:opacity-70 transition-all duration-500 pointer-events-none"></div>
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="flex items-center space-x-2 text-white text-2xl opacity-0 group-hover:opacity-100 transition duration-300">
+
+        {/* Always-on overlay, darker for mobile */}
+        <div
+          className="
+            absolute inset-0 
+            bg-black/40 md:bg-black/20 
+            group-hover:bg-black/60 
+            transition duration-500
+            pointer-events-none
+          "
+        ></div>
+
+        {/* Text: visible always on mobile, only on hover for desktop */}
+        <div
+          className="
+            absolute inset-0 flex items-center justify-center pointer-events-none
+          "
+        >
+          <span
+            className="
+            flex items-center space-x-2 text-white text-2xl drop-shadow-lg
+            opacity-100 md:opacity-0 md:group-hover:opacity-100
+            transition duration-300
+          "
+          >
             <span>{title}</span>
             <ArrowIcon />
           </span>
@@ -55,7 +76,6 @@ export default function HeroBanner() {
         imageSrc={menImage}
         altText="Shop Men"
         title="Shop Men"
-        minHeightClass="min-h-150"
         aspect="aspect-[4/5]"
       />
       <HeroBannerItem
@@ -63,7 +83,6 @@ export default function HeroBanner() {
         imageSrc={womenImage}
         altText="Shop Women"
         title="Shop Women"
-        minHeightClass="min-h-100"
         aspect="aspect-[4/5]"
       />
       <HeroBannerItem
@@ -71,7 +90,6 @@ export default function HeroBanner() {
         imageSrc={homeImage}
         altText="Shop Home"
         title="Shop Home"
-        minHeightClass="min-h-100"
         aspect="aspect-[4/5]"
       />
     </div>
