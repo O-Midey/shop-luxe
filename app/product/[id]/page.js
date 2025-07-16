@@ -3,6 +3,7 @@ import Accordion from "@/app/_components/Accordion";
 import Wishlist from "@/app/_components/icons/WishlistIcon";
 import QuantitySelector from "@/app/_components/QuantitySelector";
 import Image from "next/image";
+import ProductImageGallery from "@/app/_components/ProductImageGallery";
 
 export default async function ProductPage({ params }) {
   const product = await getProduct(params.id);
@@ -23,33 +24,7 @@ export default async function ProductPage({ params }) {
   return (
     <div className="container lg:max-w-[70%] mx-auto px-4 py-12">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 items-start">
-        <div className="max-w-md">
-          <Image
-            src={mainImage}
-            alt={title}
-            width={500}
-            height={500}
-            className="w-full max-h-[500px] object-contain shadow transition duration-300"
-          />
-
-          <div className="flex gap-2 mt-4">
-            {images.map((img, idx) => (
-              <div
-                key={idx}
-                className={`w-16 h-16 border rounded overflow-hidden`}
-              >
-                <div className="relative w-full h-full">
-                  <Image
-                    src={img}
-                    alt={`${title} thumbnail ${idx}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProductImageGallery title={title} images={images} />
 
         <div className="space-y-6">
           <h1 className="text-3xl">{title}</h1>
