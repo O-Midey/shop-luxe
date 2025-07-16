@@ -1,4 +1,4 @@
-import getProduct from "@/app/_lib/getProduct";
+import { getProduct } from "@/app/_lib/getAllProduct";
 import Accordion from "@/app/_components/Accordion";
 import Wishlist from "@/app/_components/icons/WishlistIcon";
 import QuantitySelector from "@/app/_components/QuantitySelector";

@@ -13,6 +13,11 @@ async function getProducts(category) {
   if (!res.ok) throw new Error(`Failed to fetch category ${category}`);
   return await res.json();
 }
+export async function getProduct(id) {
+  const res = await fetch(`https://dummyjson.com/products/${id}`);
+  if (!res.ok) throw new Error(`Failed to fetch product ${id}`);
+  return await res.json();
+}
 
 export default getAllProducts;
 export { getAllProducts, getProducts };
