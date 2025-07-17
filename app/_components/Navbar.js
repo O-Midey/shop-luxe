@@ -105,7 +105,7 @@ export default function Navbar() {
             </svg>
           </button>
           <nav className="flex flex-col space-y-4">
-            <Link href="/home" onClick={() => setIsOpen(false)}>
+            <Link href="/" onClick={() => setIsOpen(false)}>
               HOME
             </Link>
             <Link href="/shop/new" onClick={() => setIsOpen(false)}>
