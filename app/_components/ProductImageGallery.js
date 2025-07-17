@@ -22,7 +22,12 @@ export default function ProductImageGallery({ title, images }) {
 
   return (
     <div className="max-w-md relative">
-      {loading && <Spinner />}
+     {loading && (
+  <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60">
+    <Spinner />
+  </div>
+)}
+
 
       <Image
         src={mainImage}
