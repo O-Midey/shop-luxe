@@ -4,7 +4,7 @@ import { useWishlistStore } from "@/app/_store/wishlistStore";
 import Image from "next/image";
 
 export default function WishlistPage() {
-  const items = useWishlistStore((state) => state.items);
+  const wishlistItems = useWishlistStore((state) => state.items);
   const removeFromWishlist = useWishlistStore(
     (state) => state.removeFromWishlist
   );
@@ -12,10 +12,10 @@ export default function WishlistPage() {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl mb-6">Your Wishlist</h1>
-      {items.length === 0 ? (
+      {wishlistItems.length === 0 ? (
         <div className="text-center py-10">
           <p className="text-gray-500 mb-4">
-            Your wishlist is currently empty. Add some items now 😉
+            Your wishlist is currently empty. Add some wishlistItems now 😉
           </p>
           <Link
             href="/"
@@ -27,10 +27,11 @@ export default function WishlistPage() {
       ) : (
         <>
           <p className="py-6">
-            You currently have {items.length} items on your wishlist 🤞🏼
+            You currently have {wishlistItems.length} item
+            {wishlistItems.length > 1 ? "s" : ""} on your wishlist 🤞🏼
           </p>
           <div className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-            {items.map((product) => (
+            {wishlistItems.map((product) => (
               <div
                 key={product.id}
                 className="border rounded-lg p-4 flex flex-col space-y-4"

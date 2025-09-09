@@ -29,6 +29,7 @@ function HeroBannerItem({ imageSrc, altText, title, aspect, href }) {
         className={`relative group ${aspect} w-full cursor-pointer overflow-hidden`}
       >
         <Image
+          sizes=""
           fill
           src={imageSrc}
           alt={altText}
